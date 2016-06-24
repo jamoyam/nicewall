@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - nicewall@localhost" uuid="8f27404f-1d9b-4636-8264-546ca4ec21d8">
+    <database-info product="MySQL" version="5.6.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="nicewall"/>
+    <table name="categoria" schema="" catalog="nicewall" type="TABLE">
+      <column name="idCategoria" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idCategoria"/>
+      <exported-key name="fk_Producto_Categoria1" table="producto" schema="" catalog="nicewall" columns="Categoria_idCategoria"/>
+    </table>
+    <table name="cliente" schema="" catalog="nicewall" type="TABLE">
+      <column name="idCliente" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="rut" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nombre" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apellido" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="celular" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Direccion_idDireccion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idCliente,Direccion_idDireccion"/>
+      <exported-key name="fk_Cliente_has_venta_Cliente1" table="cliente_has_venta" schema="" catalog="nicewall" columns="Cliente_idCliente,Cliente_Direccion_idDireccion"/>
+      <exported-key name="fk_venta_Cliente1" table="venta" schema="" catalog="nicewall" columns="Cliente_idCliente"/>
+    </table>
+    <table name="cliente_has_venta" schema="" catalog="nicewall" type="TABLE">
+      <column name="Cliente_idCliente" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Cliente_Perfil_idPerfil" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Cliente_Direccion_idDireccion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="venta_idventa" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="Cliente_idCliente,Cliente_Perfil_idPerfil,Cliente_Direccion_idDireccion,venta_idventa"/>
+      <foreign-key name="fk_Cliente_has_venta_Cliente1" columns="Cliente_idCliente,Cliente_Direccion_idDireccion" ref-table="cliente" ref-schema="" ref-catalog="nicewall" ref-columns="idCliente,Direccion_idDireccion" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_Cliente_has_venta_venta1" columns="venta_idventa" ref-table="venta" ref-schema="" ref-catalog="nicewall" ref-columns="idventa" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_Cliente_has_venta_Cliente1" unique="false" columns="Cliente_idCliente,Cliente_Direccion_idDireccion"/>
+      <index name="fk_Cliente_has_venta_Cliente1_idx" unique="false" columns="Cliente_idCliente,Cliente_Perfil_idPerfil,Cliente_Direccion_idDireccion"/>
+      <index name="fk_Cliente_has_venta_venta1_idx" unique="false" columns="venta_idventa"/>
+    </table>
+    <table name="color" schema="" catalog="nicewall" type="TABLE">
+      <column name="idColor" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="descripcionColor" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idColor"/>
+    </table>
+    <table name="detalle_venta" schema="" catalog="nicewall" type="TABLE">
+      <column name="id_detalle" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombreProducto" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="precio" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cantidad" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id_detalle"/>
+    </table>
+    <table name="detalleproducto" schema="" catalog="nicewall" type="TABLE">
+      <column name="iddetalleProducto" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tipoDetalle" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Producto_idProducto" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Color_idColor" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="iddetalleProducto,Producto_idProducto,Color_idColor"/>
+      <foreign-key name="fk_detalleProducto_Producto1" columns="Producto_idProducto" ref-table="producto" ref-schema="" ref-catalog="nicewall" ref-columns="idProducto" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_detalleProducto_Producto1_idx" unique="false" columns="Producto_idProducto"/>
+    </table>
+    <table name="direccion" schema="" catalog="nicewall" type="TABLE">
+      <column name="idDireccion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idDireccion"/>
+      <exported-key name="fk_venta_Direccion1" table="venta" schema="" catalog="nicewall" columns="Direccion_idDireccion"/>
+    </table>
+    <table name="perfil" schema="" catalog="nicewall" type="TABLE">
+      <column name="idPerfil" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tipoPerfil" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idPerfil"/>
+      <exported-key name="fk_Usuario_Perfil" table="usuario" schema="" catalog="nicewall" columns="Perfil_idPerfil"/>
+    </table>
+    <table name="producto" schema="" catalog="nicewall" type="TABLE">
+      <column name="idProducto" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nombre_producto" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="image" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="precio" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="stock" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_color" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Categoria_idCategoria" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idProducto,Categoria_idCategoria"/>
+      <foreign-key name="fk_Producto_Categoria1" columns="Categoria_idCategoria" ref-table="categoria" ref-schema="" ref-catalog="nicewall" ref-columns="idCategoria" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_detalleProducto_Producto1" table="detalleproducto" schema="" catalog="nicewall" columns="Producto_idProducto"/>
+      <index name="fk_Producto_Categoria1_idx" unique="false" columns="Categoria_idCategoria"/>
+    </table>
+    <table name="usuario" schema="" catalog="nicewall" type="TABLE">
+      <column name="idUsuario" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombreUsuario" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="users" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pass" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Perfil_idPerfil" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idUsuario,Perfil_idPerfil"/>
+      <foreign-key name="fk_Usuario_Perfil" columns="Perfil_idPerfil" ref-table="perfil" ref-schema="" ref-catalog="nicewall" ref-columns="idPerfil" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_Usuario_Perfil_idx" unique="false" columns="Perfil_idPerfil"/>
+    </table>
+    <table name="venta" schema="" catalog="nicewall" type="TABLE">
+      <column name="idventa" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fechaVenta" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="Cliente_idCliente" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Direccion_idDireccion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="totalVenta" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idventa,Cliente_idCliente,Direccion_idDireccion"/>
+      <foreign-key name="fk_venta_Cliente1" columns="Cliente_idCliente" ref-table="cliente" ref-schema="" ref-catalog="nicewall" ref-columns="idCliente" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_venta_Direccion1" columns="Direccion_idDireccion" ref-table="direccion" ref-schema="" ref-catalog="nicewall" ref-columns="idDireccion" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_Cliente_has_venta_venta1" table="cliente_has_venta" schema="" catalog="nicewall" columns="venta_idventa"/>
+      <index name="fk_venta_Cliente1_idx" unique="false" columns="Cliente_idCliente"/>
+      <index name="fk_venta_Direccion1_idx" unique="false" columns="Direccion_idDireccion"/>
+    </table>
+    <table name="venta_detalleproducto" schema="" catalog="nicewall" type="TABLE">
+      <column name="venta_idventa" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="venta_Cliente_idCliente" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="venta_Direccion_idDireccion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="detalleProducto_has_Color_detalleProducto_iddetalleProducto" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="detalleProducto_has_Color_detalleProducto_Producto_idProducto" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="detalleProducto_has_Color_detalleProducto_Color_idColor" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="detalleProducto_has_Color_Color_idColor" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="valorVentaProducto" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cantidad" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="venta_idventa,venta_Cliente_idCliente,venta_Direccion_idDireccion,detalleProducto_has_Color_detalleProducto_iddetalleProducto,detalleProducto_has_Color_detalleProducto_Producto_idProducto,detalleProducto_has_Color_detalleProducto_Color_idColor,detalleProducto_has_Color_Color_idColor"/>
+      <index name="fk_venta_has_detalleProducto_has_Color_detalleProducto_has__idx" unique="false" columns="detalleProducto_has_Color_detalleProducto_iddetalleProducto,detalleProducto_has_Color_detalleProducto_Producto_idProducto,detalleProducto_has_Color_detalleProducto_Color_idColor,detalleProducto_has_Color_Color_idColor"/>
+      <index name="fk_venta_has_detalleProducto_has_Color_venta1_idx" unique="false" columns="venta_idventa,venta_Cliente_idCliente,venta_Direccion_idDireccion"/>
+    </table>
+    <table name="ventaproducto" schema="" catalog="nicewall" type="TABLE">
+      <column name="idventa_has_Producto" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idventa_has_Producto"/>
+    </table>
+  </data-source>
+</component>

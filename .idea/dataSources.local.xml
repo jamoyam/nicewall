@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - nicewall@localhost" uuid="8f27404f-1d9b-4636-8264-546ca4ec21d8">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>nicewall.*</schema-pattern>
+      <default-schemas>nicewall.*</default-schemas>
+    </data-source>
+  </component>
+</project>
