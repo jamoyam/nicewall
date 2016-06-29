@@ -6,6 +6,7 @@
     <link type="text/css" rel="stylesheet" href="../Resources/css/bootstrap.min.css">
 </head>
 <body>
+
 <?php
 session_start();
 if(isset($_SESSION['EN_SESION'])){
@@ -18,40 +19,28 @@ if(isset($_SESSION['EN_SESION'])){
     require_once('headerClient.php');
 }
 ?>
-<div class="container-fluid">
-<!--    <div class="row">
-        <div class="col-sm-4 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="">Nav item</a></li>
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-                <li><a href="">More navigation</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-            </ul>
-        </div>-->
+
+
+    <?php
+    require_once('layoutFiltro.php');
+    ?>
+
+<div class="container">
+    <div class="">
+
         <div class="">
             <div class="album text-muted">
                 <div class="container" >
-                    <div class="row" >
+                    <center><div class="row" >
                         <?php
                         require_once('../Models/Producto.php');
                         use Models\Producto;
                         $p = new Producto();
                         $filas = $p->read();
                         while ($row = mysqli_fetch_array($filas)){
-                            echo '<div class="col-md-3 portfolio-item" style="background-color: #23527c; margin-left: 2%;margin-top:2%;border-radius: 8px;">';
+                            echo '<div class="col-md-3 portfolio-item" style="background-color: #23527c; margin-left: 3.5%;margin-top:2%;margin-right: 3.5%;margin-bottom:2%;border-radius: 8px;">';
                             echo '<a href="#">';
+                            echo '<br>';
                             echo '<img style="width:100%; height:200px;margin-top:8%;" class="img-responsive thumbnail" src="'.$row['image'].'" alt="">';
                             echo '</a>';
                             echo '<h3>';
@@ -62,7 +51,7 @@ if(isset($_SESSION['EN_SESION'])){
                             echo '</div>';
                         }
                         ?>
-                    </div>
+                    </div></center>
                 </div>
             </div>
         </div>

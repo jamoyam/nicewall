@@ -56,7 +56,8 @@ if(isset($_SESSION['EN_SESION'])){
             }
         if(isset($_SESSION['carrito'])) {
             echo '<center><h2 id="total">Total: $' . $total . '</h2></center>';
-            echo '<center><a class="btn btn-success" href="../Controllers/comprar.php">Comprar</a></center>';
+            echo '<center><input id="dirEnvio" type="text" placeholder="DIRECCION ENVIO"/></center>';
+            echo '<center><a class="btn btn-success" onclick="confirmacion()">Comprar</a></center>';
         }
         ?>
         <center><a href="home.php">Ver Catalogo</a></center>
@@ -64,6 +65,21 @@ if(isset($_SESSION['EN_SESION'])){
 </div>
 </body>
 <script src="../Resources/js/jquery-1.12.4.min.js"></script>
+<script !src="">
+    function confirmacion(){
+        if($("#dirEnvio").val()==""){
+            window.alert("Debe ingresar la direccion de envio");
+        }else {
+            var respuesta = confirm("Su compra esta completa?");
+            if (respuesta == true) {
+                var dir = "../Controllers/comprar.php?direccion="+$("#dirEnvio").val();
+                window.location = dir;
+            } else {
+                return 0;
+            }
+        }
+    }
+</script>
 <script !src="">
     var inicio=function () {
         $("body").animate({ scrollTop: $(document).height()}, 1000);

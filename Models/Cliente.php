@@ -7,6 +7,7 @@ class Cliente
     private $apellido;
     private $email;
     private $celular;
+    private $idUsuario;
     private $idDireccion;
     private $con;
 
@@ -16,7 +17,7 @@ class Cliente
     }
 
     public function create(){
-        $sql = "INSERT INTO cliente VALUES('null','{$this->rut}','{$this->nombre}','{$this->apellido}','{$this->email}','{$this->celular}','{$this->idDireccion}');";
+        $sql = "INSERT INTO cliente VALUES('null','{$this->rut}','{$this->nombre}','{$this->apellido}','{$this->email}','{$this->celular}','{$this->idUsuario}','{$this->idDireccion}');";
         $this->con->simpleQuery($sql);
     }
 
@@ -24,8 +25,8 @@ class Cliente
         return $this->con->returnQuery("SELECT * FROM cliente");
     }
 
-    public function searchByUser(){
-        
+    public function searchByUser($user){
+        return $this->con->returnQuery("SELECT * FROM cliente WHERE idUsuario = '{$user}'");
     }
 
     public function delete($id){
@@ -47,6 +48,23 @@ class Cliente
     {
         $this->rut = $rut;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdUsuario()
+    {
+        return $this->idUsuario;
+    }
+
+    /**
+     * @param mixed $idUsuario
+     */
+    public function setIdUsuario($idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+    }
+
 
     /**
      * @return mixed

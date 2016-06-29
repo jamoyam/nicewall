@@ -24,6 +24,15 @@ $u->setNombreUsuario($nombre);
 $u->setUser($user);
 $u->setPass($pass);
 $u->setIdPerfil(2);
-$c->create();
 $u->create();
+$c->setIdUsuario($u->maxId());
+echo $c->getRut();echo'<br>';
+echo $c->getNombre();echo'<br>';
+echo $c->getApellido();echo'<br>';
+echo $c->getEmail();echo'<br>';
+echo $c->getCelular();echo'<br>';
+echo $c->getIdUsuario();echo'<br>';
+
+
+$c->create();
 $u->loginCliente();

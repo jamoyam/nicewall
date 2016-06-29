@@ -53,7 +53,7 @@
                             <input placeholder="Usuario" id="user_username" style="margin-bottom: 15px;" type="text" name="txtUser" size="30" />
                             <input placeholder="Contraseña" id="user_password" style="margin-bottom: 15px;" type="password" name="txtPass" size="30" />
                             <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Entrar" />
-                            <a href="registerPatient.php">Registrarse</a>
+                            <a href="registerClient.php">Registrarse</a>
                         </form>
                     </ul>
                 </li>

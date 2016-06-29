@@ -1,0 +1,10 @@
+<?php namespace Controllers;
+require_once('../Models/Venta.php');
+require_once('../Models/DetalleVenta.php');
+use Models\DetalleVenta;
+use Models\Venta;
+$det = new DetalleVenta();
+$obj = new Venta();
+$det->delete($_GET['idVenta']);
+$obj->delete($_GET['idVenta']);
+header('Location: ../Views/adminVentas.php');

@@ -17,6 +17,10 @@ class Usuario
         $this->conex->simpleQuery($sql);
     }
 
+    public function maxId(){
+        return mysqli_fetch_row($this->conex->returnQuery("SELECT MAX(idUsuario)FROM usuario;"))[0];
+    }
+
     public function loginCliente(){
         $fila = $this->conex->returnQuery("SELECT * FROM usuario u JOIN perfil p ON u.Perfil_idPerfil=p.idPerfil WHERE u.users = '{$this->user}';");
         session_start();
@@ -32,6 +36,7 @@ class Usuario
                 } else {
                     $_SESSION['EN_SESION'] = $array['nombreUsuario'];
                     $_SESSION['TIPO_SESION'] = "CLIENTE";
+                    $_SESSION['ID_USUARIO']= $array['idUsuario'];
                     header('Location: ../Views/home.php');
                 }
             }
@@ -70,7 +75,7 @@ class Usuario
     }
 
     public function read(){
-        $sql = "SELECT * FROM usuario";;
+        $sql = "SELECT * FROM usuario WHERE nombreUsuario != 'Administrador';";
         return $this->conex->returnQuery($sql);
     }
 

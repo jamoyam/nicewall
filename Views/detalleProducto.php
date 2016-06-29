@@ -18,29 +18,14 @@ if(isset($_SESSION['EN_SESION'])){
     require_once('headerClient.php');
 }
 ?>
+
+    <?php
+    require_once('layoutFiltro.php');
+    ?>
+
 <div class="container-fluid">
-<!--    <div class="row">
-        <div class="col-sm-2 col-md-2">style="background-color: blue"
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="">Nav item</a></li>
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-                <li><a href="">More navigation</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-            </ul>
-        </div>-->
-        <div class="col-sm-10 col-md-10"><!--style="background-color: red"-->
+    <div class="row">
+        <div class=""><!--style="background-color: red"-->
             <div class="album text-muted">
                 <div class="container-fluid" >
                     <?php
@@ -59,7 +44,7 @@ if(isset($_SESSION['EN_SESION'])){
                         }
                     }
                     echo '</div>';
-                    echo '<center><img style="width:35%; height:15%;margin-top:8%;" class="img-responsive thumbnail" src="'.$array['image'].'"/></center>';
+                    echo '<center><img style="width:35%; height:8cm;margin-top:8%;" class="img-responsive thumbnail" src="'.$array['image'].'"/></center>';
                     echo '</h3>';
                     echo '<p>Descripcion: '.$array['descripcion'].'</p>';
                     echo '<p>Precio: $'.$array['precio'].'</p>';

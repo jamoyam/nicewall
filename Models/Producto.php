@@ -19,6 +19,7 @@ class Producto
     public function create($name){
         $dir_subida = '../Resources/images/';
         $this->image = $dir_subida . basename($name);
+        $this->idProducto = mysqli_fetch_row($this->conex->returnQuery("SELECT MAX(idProducto)FROM producto;"))[0]+1;
         $sql = "INSERT INTO producto VALUES('{$this->idProducto}','{$this->nombreProducto}','{$this->descripcion}','{$this->image}','{$this->precio}','{$this->stock}','{$this->idColor}','{$this->id_categoria}');";
         $this->conex->simpleQuery($sql);
     }
@@ -30,6 +31,40 @@ class Producto
         }else{
             return false;
         }
+    }
+
+    public function searchById($id){
+        return $this->conex->returnQuery("SELECT * FROM producto WHERE idProducto='{$id}'");
+    }
+
+    public function searchByColor($idColor){
+        return $this->conex->returnQuery("SELECT * FROM producto p JOIN color co on p.id_color=co.idColor WHERE co.idColor='{$idColor}'");
+    }
+
+    public function searchByCategoria($idCategoria){
+        return $this->conex->returnQuery("SELECT * FROM producto p JOIN categoria ca on p.Categoria_idCategoria=ca.idCategoria WHERE ca.idCategoria='{$idCategoria}'");
+    }
+
+    public function searchByPrecio($desde,$hasta){
+        if($desde=="" && $hasta!=""){
+            return $this->conex->returnQuery("SELECT * FROM producto WHERE precio<='{$hasta}'");
+        }
+        if($hasta=="" && $desde!=""){
+            return $this->conex->returnQuery("SELECT * FROM producto WHERE precio>='{$desde}'");
+        }
+        if($hasta!="" && $desde!=""){
+            return $this->conex->returnQuery("SELECT * FROM producto WHERE precio>='{$desde}' AND precio<='{$hasta}'");
+        }
+        if($hasta=="" && $desde ==""){
+            return $this->conex->returnQuery("SELECT * FROM producto");
+        }
+    }
+
+    public function modificar($name){
+        $dir_subida = '../Resources/images/';
+        $this->image = $dir_subida . basename($name);
+        $sql = "UPDATE producto SET nombre_producto='{$this->nombreProducto}',descripcion='{$this->descripcion}',image='{$this->image}',precio='{$this->precio}',stock='{$this->stock}',id_color='{$this->idColor}',Categoria_idCategoria='{$this->id_categoria}' WHERE idProducto='{$this->idProducto}';";
+        $this->conex->simpleQuery($sql);
     }
 
     /**

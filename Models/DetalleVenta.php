@@ -6,6 +6,7 @@ class DetalleVenta
     private $nombreProducto;
     private $precio;
     private $cantidad;
+    private $subtotal;
     private $idVenta;
 
     private $con;
@@ -15,8 +16,12 @@ class DetalleVenta
     }
 
     public function create(){
-        $sql = "INSERT INTO detalle_venta VALUE ('null','{$this->nombreProducto}',{$this->precio},'{$this->cantidad}','{$this->idVenta}');";
+        $sql = "INSERT INTO detalle_venta VALUE ('null','{$this->nombreProducto}',{$this->precio},'{$this->cantidad}','{$this->subtotal}','{$this->idVenta}');";
         $this->con->simpleQuery($sql);
+    }
+
+    public function delete($id){
+        $this->con->simpleQuery("DELETE FROM detalle_venta WHERE id_venta='{$id}'");
     }
 
     /**
@@ -82,6 +87,24 @@ class DetalleVenta
     {
         $this->cantidad = $cantidad;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSubtotal()
+    {
+        return $this->subtotal;
+    }
+
+    /**
+     * @param mixed $subtotal
+     */
+    public function setSubtotal($subtotal)
+    {
+        $this->subtotal = $subtotal;
+    }
+
+
 
     /**
      * @return mixed

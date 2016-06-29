@@ -11,48 +11,50 @@ session_start();
 require_once('headerAdmin.php');
 ?>
 <div class="container" style="margin-top: 4%;">
+
     <div class="panel panel-default" align="center">
-        <div class="panel-heading" style="background-color: black;color: white">Usuarios</div>
-        <table class="table">
+        <div class="panel-heading" style="background-color: black;color: white">Colores</div>
+        <div style="margin-top: 1%">
+            <form action="../Controllers/createColor.php" method="post" role="form" style="width: 50%">
+
+                <div class="form-group">
+                    <input name="txtNombre" type="text" class="form-control" required="required" PLACEHOLDER="NOMBRE COLOR">
+                </div>
+
+                <button type="submit" class="btn btn-default">Agregar</button>
+            </form>
+        </div>
+<div align="center" style="margin-top: 2%">
+        <table class="table" style="width:65%;border:2px solid black">
             <tr style="background-color: black;color:white;">
-                <td>NOMBRE</td>
-                <td>USERNAME</td>
-                <td>ACCION</td>
+                <td>Codigo Color</td>
+                <td>Descripcion</td>
+                <td>Accion</td>
             </tr>
             <?php
-            require_once('../Models/Usuario.php');
-            use Models\Usuario;
-            $obj = new Usuario();
+            require_once('../Models/Color.php');
+            use Models\Color;
+            $obj = new Color();
             $filas = $obj->read();
             while ($row = mysqli_fetch_array($filas)) {
                 echo '<tr>';
                 echo '<td>';
-                echo '<label>'.$row['nombreUsuario'].'</label>';
+                echo '<label>'.$row['idColor'].'</label>';
                 echo '</td>';
                 echo '<td>';
-                echo '<label>'.$row['users'].'</label>';
+                echo '<label>'.$row['descripcionColor'].'</label>';
                 echo '</td>';
                 echo '<td>';
-                echo '<a href="#" class="btn btn-default" style="background-color:black;color:white" onclick="confirmacion('.$row['idUsuario'].')">Eliminar</a>';
+                echo '<a href="../Controllers/deleteColor.php?id='.$row['idColor'].'" class="btn btn-default" style="background-color:black;color:white">Eliminar Color</a>';
                 echo '</td>';
                 echo '</tr>';
             }
             ?>
-        </table>
+        </table></div>
     </div>
 </div>
 </body>
 <script src="../Resources/js/jquery-1.12.4.min.js"></script>
-<script !src="">
-    function confirmacion($id){
-        var respuesta = confirm("Esta seguro de eliminar a este usuario?");
-        if (respuesta == true) {
-            window.location = "../Controllers/deleteUser.php?id=" + $id;
-        } else {
-            return 0;
-        }
-    }
-</script>
 <script type="text/javascript" src="../Resources/js/bootstrap.min.js">
     $(function() {
         // Setup drop down menu

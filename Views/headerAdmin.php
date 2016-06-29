@@ -1,4 +1,4 @@
-<div class="navbar navbar-default" style="background-color: #23527c;"><!--navbar-fixed-top-->
+<div class="navbar navbar-default" style="background-color: black;"><!--navbar-fixed-top-->
     <div class="container">
         <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -12,6 +12,15 @@
                     </li>
                     <li>
                         <a href="adminVentas.php">Ventas</a>
+                    </li>
+                    <li>
+                        <a href="adminCategorias.php">Categorias</a>
+                    </li>
+                    <li>
+                        <a href="adminColores.php">Colores</a>
+                    </li>
+                    <li>
+                        <a href="adminDirecciones.php">Direcciones</a>
                     </li>
                     <li>
                         <a href="adminClientes.php">Clientes</a>
