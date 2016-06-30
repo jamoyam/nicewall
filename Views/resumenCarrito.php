@@ -1,8 +1,11 @@
 <!doctype html>
+<?php
+    require 'title.php';
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title><?php echo $titulo;?></title>
     <link rel="stylesheet" href="../Resources/css/bootstrap.min.css">
 </head>
 <body>
